@@ -43,4 +43,22 @@ export const getAllClub = async (req, res) => {
   }
 };
 
-
+export const getSingleClubById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const club = await Club.findById(id);
+    if (!club) {
+      return res.status(404).json({
+        message: "Club is not found",
+      });
+    }
+    res.status(200).json({
+      message: "Club fetched successfully",
+      data: club,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
