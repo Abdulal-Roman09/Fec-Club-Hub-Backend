@@ -62,3 +62,21 @@ export const getSingleClubById = async (req, res) => {
     });
   }
 };
+
+export const updateClube = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+    const updateClub = await Club.findByIdAndUpdate(id, updates, {
+      new: true,
+      runValidators: true,
+    });
+    if (!updateClub) return res.status(404).json({ message: "Club not found" });
+    res.status(200).json({
+      message: "Club updated successfully",
+      data: updateClub,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

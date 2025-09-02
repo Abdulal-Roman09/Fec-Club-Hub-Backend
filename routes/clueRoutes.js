@@ -1,5 +1,5 @@
 import express from "express";
-import { createClue, getAllClub, getSingleClubById } from './../controllers/club/club-controllers.js';
+import { createClue, getAllClub, getSingleClubById, updateClube } from './../controllers/club/club-controllers.js';
 
 
 const router = express.Router();
@@ -7,5 +7,6 @@ const router = express.Router();
 router.post("/all-clubs", createClue);
 router.get("/all-clubs", getAllClub);
 router.get("/all-club/:id", getSingleClubById);
+router.put("/all-club/:id", updateClube);
 
 export default router;
