@@ -1,8 +1,10 @@
+import express from "express";
+import { createClue, getAllClub } from './../controllers/club/club-controllers.js';
 
-import  express  from 'express';
-import createClue from '../controllers/club/club-controllers.js';
 
-const router=express.Router()
-router.post("/all-clubs",createClue)
+const router = express.Router();
 
-export default router
+router.post("/all-clubs", createClue);
+router.get("/all-clubs", getAllClub);
+
+export default router;

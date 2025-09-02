@@ -1,6 +1,6 @@
 import Club from "../../models/Club.js";
 
-const createClue = async (req, res) => {
+export const createClue = async (req, res) => {
   try {
     const allInformation = req.body;
     const existingClub = await Club.findOne({
@@ -29,4 +29,18 @@ const createClue = async (req, res) => {
   }
 };
 
-export default createClue;
+export const getAllClub = async (req, res) => {
+  try {
+    const clubs = await Club.find();
+    res.status(200).json({
+      message: "All clubs fetched successfully",
+      data: clubs,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+
