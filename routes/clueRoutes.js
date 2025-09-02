@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post("/all-clubs", createClue);
 router.get("/all-clubs", getAllClub);
-router.get("/all-clubs/:id", getSingleClubById);
+router.get("/all-club/:id", getSingleClubById);
 
 export default router;
