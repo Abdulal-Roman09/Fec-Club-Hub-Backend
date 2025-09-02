@@ -80,3 +80,51 @@ export const updateClube = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+export const deleteClubById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const club = await Club.findByIdAndDelete(id);
+    if (!club) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+
+    res.status(200).json({
+      message: "Club deleted successfully",
+      data: club,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getAllClubBySearch = async (req, res) => {
+  try {
+    const { page = 1, limit = 10, search = "" } = req.query;
+
+    const query = search
+      ? {
+          $or: [
+            { clubName: { $regex: search, $options: "i" } },
+            { clubSortName: { $regex: search, $options: "i" } },
+          ],
+        }
+      : {};
+
+    const clubs = await Club.find(query)
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    const total = await Club.countDocuments(query);
+
+    res.status(200).json({
+      message: "Clubs fetched successfully",
+      data: clubs,
+      page: Number(page),
+      totalPages: Math.ceil(total / limit),
+      totalResults: total,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
