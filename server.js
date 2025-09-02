@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import clubRouters from "./routes/clueRoutes.js";
 
 // load env
 dotenv.config();
@@ -14,6 +15,7 @@ mongoose
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+app.use(express.json());
 // Middlewares
 app.use(
   cors({
@@ -29,6 +31,8 @@ app.use(
     credentials: true,
   })
 );
+// all route
+app.use("/api/v1", clubRouters);
 
 // simple route
 app.get("/", (req, res) => {
