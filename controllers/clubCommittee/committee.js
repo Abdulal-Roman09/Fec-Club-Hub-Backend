@@ -47,3 +47,24 @@ export const getCommittee = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteCommittee = async (req, res) => {
+  try {
+    const { _id, email } = req.params;
+    console.log(_id)
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+      return res.status(400).json({ message: "Invalid club _id" });
+    }
+    const updateClub = await Club.findByIdAndUpdate(
+      _id,
+      { $pull: { clubCommittee: { email } } },
+      { new: true }
+    );
+    if (!updateClub) {
+      return res.status(404).json({ message: "Club not fonund" });
+    }
+    res.status(200).json({ message: "committee member deleted" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
