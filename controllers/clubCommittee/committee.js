@@ -28,22 +28,22 @@ export const addCommittee = async (req, res) => {
 };
 
 // Get committee members by MongoDB _id
-// export const getCommittee = async (req, res) => {
-//   try {
-//     const { _id } = req.params;
+export const getCommittee = async (req, res) => {
+  try {
+    const { _id } = req.params;
 
-//     if (!mongoose.Types.ObjectId.isValid(_id)) {
-//       return res.status(400).json({ message: "Invalid club _id" });
-//     }
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+      return res.status(400).json({ message: "Invalid club _id" });
+    }
 
-//     const club = await Club.findById(_id, { clubCommittee: 1, _id: 0 });
+    const club = await Club.findById(_id, { clubCommittee: 1, _id: 0 });
 
-//     if (!club) {
-//       return res.status(404).json({ message: "Club not found" });
-//     }
+    if (!club) {
+      return res.status(404).json({ message: "Club not found" });
+    }
 
-//     res.status(200).json(club.clubCommittee);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(club.clubCommittee);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

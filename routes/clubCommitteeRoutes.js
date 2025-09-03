@@ -5,6 +5,6 @@ const router = express.Router();
 
 // Use Mongo _id in the URL
 router.post("/:_id/add-committee", addCommittee);
-// router.get("/:_id/committee", getCommittee);
+router.get("/:_id/committee", getCommittee);
 
 export default router;
