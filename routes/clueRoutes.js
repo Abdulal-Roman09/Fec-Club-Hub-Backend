@@ -4,6 +4,7 @@ import { createClue, deleteClubById, getAllClub, getAllClubBySearch, getSingleCl
 
 const router = express.Router();
 
+
 router.post("/all-clubs", createClue);
 router.get("/all-clubs", getAllClub);
 router.get("/all-clubs", getAllClubBySearch);

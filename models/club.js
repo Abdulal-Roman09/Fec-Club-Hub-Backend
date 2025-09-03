@@ -1,4 +1,10 @@
 import mongoose from "mongoose";
+const clubCommitteeSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  role: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true }
+}, { _id: false });
 
 const ClubSchema = new mongoose.Schema({
   clubId: { type: String, required: true, unique: true },
@@ -25,6 +31,9 @@ const ClubSchema = new mongoose.Schema({
       "Education",
     ],
   },
+  clubCommittee:{type:[clubCommitteeSchema],default:[]},
+  clubAchivements:[],
+  ClubEvents:[]
 }, { timestamps: true });
 
 export default mongoose.model("Club", ClubSchema);

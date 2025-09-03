@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import clubRouters from "./routes/clueRoutes.js";
+import clubCommitteeRoutes from "./routes/clubCommitteeRoutes.js";
 
 // load env
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(
 );
 // all route
 app.use("/api/v1", clubRouters);
+app.use("/api/v1", clubCommitteeRoutes);
 
 // simple route
 app.get("/", (req, res) => {
