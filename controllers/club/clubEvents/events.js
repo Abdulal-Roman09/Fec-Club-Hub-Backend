@@ -25,3 +25,17 @@ export const addEvent = async (req, res) => {
     });
   }
 };
+
+export const getAllEvents = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const club = await Club.findById(_id);
+
+    if (!club) {
+      return res.status({ message: "Club is not found" });
+    }
+    return res.status(200).json({ ClubEvents: club.ClubEvents });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
