@@ -1,5 +1,9 @@
 import express from "express";
-import { addCommittee, deleteCommittee, getCommittee } from "../controllers/clubCommittee/committee.js";
+import {
+  addCommittee,
+  deleteCommittee,
+  getCommittee,
+} from "../controllers/clubCommittee/committee.js";
 
 const router = express.Router();
 

@@ -51,7 +51,7 @@ export const getCommittee = async (req, res) => {
 export const deleteCommittee = async (req, res) => {
   try {
     const { _id, email } = req.params;
-    console.log(_id)
+    console.log(_id);
     if (!mongoose.Types.ObjectId.isValid(_id)) {
       return res.status(400).json({ message: "Invalid club _id" });
     }
