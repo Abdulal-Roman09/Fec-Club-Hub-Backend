@@ -9,7 +9,19 @@ const clubCommitteeSchema = new mongoose.Schema(
   { _id: false }
 );
 
-
+const ClubEventsSchema = new mongoose.Schema({
+  eventName: { type: String, required: true },
+  eventBanner: { type: String, required: true },
+  eventDescription: { type: String, required: true },
+  eventDate: { type: String, required: true },
+  eventTime: { type: String, required: true },
+  eventDeadline: { type: String, required: true },
+  eventLocation: { type: String, required: true },
+  eventSpker: { type: String, required: true },
+  eventOrganizer: { type: String },
+  eventRegister: { type: String },
+  eventRegisterDeadline: { type: String },
+});
 
 const ClubSchema = new mongoose.Schema(
   {
