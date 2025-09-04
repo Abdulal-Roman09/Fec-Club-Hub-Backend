@@ -17,7 +17,7 @@ const ClubEventsSchema = new mongoose.Schema({
   eventTime: { type: String, required: true },
   eventDeadline: { type: String, required: true },
   eventLocation: { type: String, required: true },
-  eventSpker: { type: String, required: true },
+  eventSpeaker: { type: String, required: true },
   eventOrganizer: { type: String },
   eventRegister: { type: String },
   eventRegisterDeadline: { type: String },

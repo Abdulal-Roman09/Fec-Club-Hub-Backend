@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import clubRouters from "./routes/clueRoutes.js";
 import clubCommitteeRoutes from "./routes/clubCommitteeRoutes.js";
+import clubEventsRoutes from "./routes/clubEventsRoutes.js";
 
 // load env
 dotenv.config();
@@ -35,6 +36,7 @@ app.use(
 // all route
 app.use("/api/v1", clubRouters);
 app.use("/api/v1", clubCommitteeRoutes);
+app.use("/api/v1", clubEventsRoutes);
 
 // simple route
 app.get("/", (req, res) => {
