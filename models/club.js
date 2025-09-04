@@ -10,7 +10,7 @@ const clubCommitteeSchema = new mongoose.Schema(
 );
 
 const ClubEventsSchema = new mongoose.Schema({
-  eventName: { type: String, required: true },
+  eventName: { type: String, required: true ,unique:true},
   eventBanner: { type: String, required: true },
   eventDescription: { type: String, required: true },
   eventDate: { type: String, required: true },
