@@ -1,28 +1,32 @@
 import mongoose from "mongoose";
+
+// Committee Sub-Schema
 const clubCommitteeSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    role: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
+    name: { type: String },
+    role: { type: String },
+    email: { type: String },
+    phone: { type: String },
   },
   { _id: false }
 );
 
+// Events Sub-Schema
 const ClubEventsSchema = new mongoose.Schema({
-  eventName: { type: String, required: true ,unique:true},
-  eventBanner: { type: String, required: true },
-  eventDescription: { type: String, required: true },
-  eventDate: { type: String, required: true },
-  eventTime: { type: String, required: true },
-  eventDeadline: { type: String, required: true },
-  eventLocation: { type: String, required: true },
-  eventSpeaker: { type: String, required: true },
+  eventName: { type: String },
+  eventBanner: { type: String },
+  eventDescription: { type: String },
+  eventDate: { type: String },
+  eventTime: { type: String },
+  eventDeadline: { type: String },
+  eventLocation: { type: String },
+  eventSpeaker: { type: String },
   eventOrganizer: { type: String },
   eventRegister: { type: String },
   eventRegisterDeadline: { type: String },
 });
 
+// Main Club Schema
 const ClubSchema = new mongoose.Schema(
   {
     clubId: { type: String, required: true, unique: true },
@@ -50,7 +54,7 @@ const ClubSchema = new mongoose.Schema(
       ],
     },
     clubCommittee: { type: [clubCommitteeSchema], default: [] },
-    clubAchivements: [],
+    clubAchivements: { type: Array, default: [] },
     ClubEvents: { type: [ClubEventsSchema], default: [] },
   },
   { timestamps: true }

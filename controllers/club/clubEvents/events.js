@@ -4,27 +4,27 @@ export const addEvent = async (req, res) => {
   try {
     const { _id } = req.params;
     const eventData = req.body;
+
+    if (!eventData.eventName) {
+      return res.status(400).json({ message: "Event name is required" });
+    }
+
     const club = await Club.findById(_id);
-
     if (!club) {
-      return res.status(404).json({
-        message: "Clube is not Found",
-      });
+      return res.status(404).json({ message: "Club not found" });
     }
 
-    if (!club.ClubEvents) {
-      club.ClubEvents = [];
-    }
-
+    club.ClubEvents = club.ClubEvents || [];
     club.ClubEvents.push(eventData);
+
     await club.save();
-    return res.status(201).json({ message: "Events is add " });
+
+    return res.status(201).json({ message: "Event added successfully", event: eventData });
   } catch (error) {
-    return res.status(500).json({
-      message: error.message,
-    });
+    return res.status(500).json({ message: error.message });
   }
 };
+
 
 export const getAllEvents = async (req, res) => {
   try {
