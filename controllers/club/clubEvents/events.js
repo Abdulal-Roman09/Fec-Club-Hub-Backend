@@ -19,12 +19,13 @@ export const addEvent = async (req, res) => {
 
     await club.save();
 
-    return res.status(201).json({ message: "Event added successfully", event: eventData });
+    return res
+      .status(201)
+      .json({ message: "Event added successfully", event: eventData });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-
 
 export const getAllEvents = async (req, res) => {
   try {
